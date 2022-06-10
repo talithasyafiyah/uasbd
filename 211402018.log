@@ -89,3 +89,6 @@ MariaDB [task_manager]> SELECT a.id, a.task_name, b.task_status, b.task_comments
 ERROR 1054 (42S22): Unknown column 'a.id' in 'field list'
 MariaDB [task_manager]> SELECT a.id, a.task_name, b.task_status, b.task_comments, d.category_name as 'Category',DATEDIFF(a.task_duration_end, a.ask_duration_start) as 'Lama Pengerjaan',c.name as 'Create By', (SELECT name from users where c.id = b.user_verify_id ) as 'Verified By'FROM task_plans aRIGHT RIGHT JOIN task_dailies b ON a.id = b.plan_idINNER JOIN users c ON b.id = c.idRIGHT LEFT JOIN task_categories d ON a.category_id = d.id;
 ERROR 1054 (42S22): Unknown column 'a.id' in 'field list'
+MariaDB [task_manager]> SELECT a.id, a.task_name, b.task_status, b.task_comments, d.category_name as 'Category', DATEDIFF(a.task_duration_end, a.ask_duration_start) as 'Lama Pengerjaan', c.name as 'Create By', (SELECT name from users where c.id = b.user_verify_id ) as 'Verified By' FROM task_plans a LEFT JOIN task_dailies b ON a.id = b.plan_id INNER JOIN users c ON b.id = c.id LEFT JOIN task_categories d ON a.category_id = d.id;
+Empty set (0.001 sec)
+
